@@ -13,12 +13,26 @@ const Register = () => {
     const photo = form.get("photo");
     const email = form.get("email");
     const password = form.get("password");
-    console.log({ name, photo, email, password });
+    // console.log({ name, photo, email, password });
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        const newUser = { name, email };
+
+        //save new user info to the database
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("user created to db", data);
+          });
       })
       .catch((error) => {
         console.log("ERROR", error);
