@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { setUser, createUser, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [error, setError] = useState({});
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -14,30 +16,29 @@ const Register = () => {
     const email = form.get("email");
     const password = form.get("password");
     // console.log({ name, photo, email, password });
+    setError({});
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        const newUser = { name, email };
-
-        //save new user info to the database
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("user created to db", data);
-          });
+        setUser(user);
       })
       .catch((error) => {
-        console.log("ERROR", error);
+        setError({ register: error.message });
       });
   };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        setUser(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        setError({ register: error.message || "Something went wrong" });
+      });
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen my-6">
       <div className="card bg-base-100 w-full max-w-lg shrink-0 border-2 rounded-md md:py-10 py-5">
@@ -93,6 +94,9 @@ const Register = () => {
               required
             />
           </div>
+          {error?.register && (
+            <label className="label text-red-600">{error.register}</label>
+          )}
           <div className="form-control mt-6">
             <button className="btn btn-neutral rounded-sm">Register</button>
           </div>
@@ -107,7 +111,10 @@ const Register = () => {
           </Link>
         </p>
         <div className="w-[86%] mx-auto">
-          <button className="btn btn-outline border-2 btn-neutral w-full rounded-sm mt-4 mx-auto">
+          <button
+            onClick={handleGoogleSignIn}
+            className="btn btn-outline border-2 btn-neutral w-full rounded-sm mt-4 mx-auto"
+          >
             <span>
               <FaGoogle></FaGoogle>
             </span>
