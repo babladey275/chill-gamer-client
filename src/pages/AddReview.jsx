@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const AddReview = () => {
   const handleAddReview = (event) => {
     event.preventDefault();
@@ -21,6 +23,27 @@ const AddReview = () => {
       name,
     };
     console.log(newReview);
+
+    //send data to the server
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newReview),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Review added successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      });
   };
 
   return (
@@ -130,7 +153,7 @@ const AddReview = () => {
           </select>
         </div>
 
-        {/* User Email (Read-Only) */}
+        {/* User Email */}
         <div className="mb-4">
           <label className="label">
             <span className="label-text font-medium text-gray-700">
@@ -145,7 +168,7 @@ const AddReview = () => {
           />
         </div>
 
-        {/* User Name (Read-Only) */}
+        {/* User Name */}
         <div className="mb-6">
           <label className="label">
             <span className="label-text font-medium text-gray-700">

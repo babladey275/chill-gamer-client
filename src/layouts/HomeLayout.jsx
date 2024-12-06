@@ -1,3 +1,4 @@
+import ReviewCard from "../components/ReviewCard";
 import Navbar from "../components/Navbar";
 
 const HomeLayout = () => {
@@ -6,7 +7,11 @@ const HomeLayout = () => {
       <header>
         <Navbar></Navbar>
       </header>
-      <main></main>
+      <main>
+        <section>
+          <ReviewCard></ReviewCard>
+        </section>
+      </main>
       <footer></footer>
     </div>
   );
