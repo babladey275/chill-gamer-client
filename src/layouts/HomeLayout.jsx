@@ -8,7 +8,7 @@ const HomeLayout = () => {
         <Navbar></Navbar>
       </header>
       <main>
-        <section>
+        <section className="max-w-6xl mx-auto">
           <ReviewCard></ReviewCard>
         </section>
       </main>
