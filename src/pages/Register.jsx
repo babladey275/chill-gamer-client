@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
-  const { setUser, createUser, signInWithGoogle } = useContext(AuthContext);
+  const { setUser, createUser, signInWithGoogle, updateUserProfile } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState({});
 
@@ -22,6 +23,13 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        updateUserProfile({ displayName: name, photoURL: photo })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => {
+            setError({ register: error.message });
+          });
       })
       .catch((error) => {
         setError({ register: error.message });
@@ -35,7 +43,7 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
-        setError({ register: error.message || "Something went wrong" });
+        setError({ register: error?.message || "Something went wrong" });
       });
   };
 

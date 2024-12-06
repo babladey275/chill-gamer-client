@@ -4,6 +4,7 @@ import AddReview from "../pages/addReview";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
   },
   {
     path: "add-review",
-    element: <AddReview></AddReview>,
+    element: (
+      <PrivateRoute>
+        <AddReview></AddReview>
+      </PrivateRoute>
+    ),
   },
 ]);
 

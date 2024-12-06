@@ -1,6 +1,11 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const links = (
     <>
       <li>
@@ -9,17 +14,26 @@ const Navbar = () => {
       <li>
         <Link to={"/all-reviews"}>All Reviews</Link>
       </li>
-      <li>
-        <Link to={"/add-review"}>Add Review</Link>
-      </li>
-      <li>
-        <Link to={"/my-reviews"}>My Reviews</Link>
-      </li>
-      <li>
-        <Link to={"/watch-list"}>Game WatchList</Link>
-      </li>
+      {user && (
+        <>
+          <li>
+            <Link to={"/add-review"}>Add Review</Link>
+          </li>
+          <li>
+            <Link to={"/my-reviews"}>My Reviews</Link>
+          </li>
+          <li>
+            <Link to={"/watch-list"}>Game WatchList</Link>
+          </li>
+        </>
+      )}
     </>
   );
+
+  const handleLogOut = () => {
+    logOut();
+    navigate("/");
+  };
 
   return (
     <div className="bg-orange-50">
@@ -57,12 +71,30 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to={"/auth/login"} className="btn">
-            login
-          </Link>
-          <Link to={"/auth/register"} className="btn">
-            register
-          </Link>
+          {user && user?.email ? (
+            <div className="flex items-center gap-6">
+              <div className="relative flex flex-col items-center">
+                <img
+                  src={user.photoURL}
+                  className="w-8 h-8 rounded-full"
+                  alt="User Avatar"
+                  title={user.displayName || "User"}
+                />
+              </div>
+              <Link onClick={handleLogOut} className="btn btn-neutral">
+                Log Out
+              </Link>
+            </div>
+          ) : (
+            <div className="flex gap-2 items-center">
+              <Link to={"/auth/login"} className="btn btn-neutral">
+                Login
+              </Link>
+              <Link to={"/auth/register"} className="btn btn-neutral">
+                Register
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

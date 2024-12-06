@@ -5,7 +5,7 @@ const ReviewCard = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {reviews.map((review) => (
-        <div className="card w-full bg-base-100 shadow-xl" key={review.id}>
+        <div className="card w-full bg-base-100 shadow-xl" key={review._id}>
           <div className="card-body p-5">
             <img src={review.image} alt="" className="h-64 w-full rounded-md" />
             <h3 className="card-title text-lg font-semibold">{review.title}</h3>
