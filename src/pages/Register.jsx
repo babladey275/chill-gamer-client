@@ -1,14 +1,36 @@
+import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const name = form.get("name");
+    const photo = form.get("photo");
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log({ name, photo, email, password });
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log("ERROR", error);
+      });
+  };
   return (
     <div className="flex justify-center items-center min-h-screen my-6">
       <div className="card bg-base-100 w-full max-w-lg shrink-0 border-2 rounded-md md:py-10 py-5">
         <h2 className="text-2xl font-semibold text-center">
           Register your account
         </h2>
-        <form className="card-body">
+        <form onSubmit={handleRegister} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Your Name</span>
