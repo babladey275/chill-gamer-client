@@ -14,15 +14,14 @@ const ReviewDetails = () => {
     const userName = user.displayName;
     const userEmail = user.email;
     const newWatchList = {
-      user: { userName, userEmail },
-      reviewDetails: {
-        title,
-        description,
-        rating,
-        genre,
-        name,
-        email,
-      },
+      userName,
+      userEmail,
+      title,
+      description,
+      rating,
+      genre,
+      name,
+      email,
     };
 
     //send data to the server
