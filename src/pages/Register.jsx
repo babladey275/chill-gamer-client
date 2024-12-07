@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { setUser, createUser, signInWithGoogle, updateUserProfile } =
@@ -19,13 +20,46 @@ const Register = () => {
     // console.log({ name, photo, email, password });
     setError({});
 
+    const hasUpperCase = /[A-Z]/;
+    if (!hasUpperCase.test(password)) {
+      setError({
+        ...error,
+        password: "Password must contain at least one uppercase letter.",
+      });
+      return;
+    }
+
+    const hasLowerCase = /[a-z]/;
+    if (!hasLowerCase.test(password)) {
+      setError({
+        ...error,
+        password: "Password must contain at least one lowercase letter.",
+      });
+      return;
+    }
+
+    if (password.length < 6) {
+      setError({
+        ...error,
+        password: "Password must be at least 6 characters long",
+      });
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
         updateUserProfile({ displayName: name, photoURL: photo })
           .then(() => {
-            navigate("/");
+            Swal.fire({
+              icon: "success",
+              title: "Registration Successful!",
+              text: "You have successfully registered!",
+              confirmButtonText: "OK",
+            }).then(() => {
+              navigate("/");
+            });
           })
           .catch((error) => {
             setError({ register: error.message });
@@ -102,6 +136,11 @@ const Register = () => {
               required
             />
           </div>
+          {error?.password && (
+            <label className="label text-sm text-red-600">
+              {error.password}
+            </label>
+          )}
           {error?.register && (
             <label className="label text-red-600">{error.register}</label>
           )}
