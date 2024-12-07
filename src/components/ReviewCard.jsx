@@ -11,7 +11,7 @@ const ReviewCard = () => {
             <h3 className="card-title text-lg font-semibold">{review.title}</h3>
             <p className="text-sm text-gray-700">Rating: {review.rating}</p>
             <div className="card-actions justify-end">
-              <Link to={`/review-details/${review.id}`}>
+              <Link to={`/review-details/${review._id}`}>
                 <button className="btn btn-outline">Explore Details</button>
               </Link>
             </div>

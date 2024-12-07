@@ -1,7 +1,11 @@
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AddReview = () => {
+  const { user } = useContext(AuthContext);
+
   const handleAddReview = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -171,6 +175,7 @@ const AddReview = () => {
               <input
                 type="email"
                 name="email"
+                value={user?.email}
                 readOnly
                 className="mt-2 p-2 w-full border border-gray-300 rounded-md bg-gray-100"
               />
@@ -186,6 +191,7 @@ const AddReview = () => {
               <input
                 type="text"
                 name="name"
+                value={user?.displayName}
                 readOnly
                 className="mt-2 p-2 w-full border border-gray-300 rounded-md bg-gray-100"
               />

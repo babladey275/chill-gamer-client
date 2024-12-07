@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
-import AddReview from "../pages/addReview";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import AddReview from "../pages/AddReview";
+import ReviewDetails from "../pages/ReviewDetails";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,15 @@ const router = createBrowserRouter([
         <AddReview></AddReview>
       </PrivateRoute>
     ),
+  },
+  {
+    path: "review-details/:id",
+    element: (
+      <PrivateRoute>
+        <ReviewDetails></ReviewDetails>
+      </PrivateRoute>
+    ),
+    loader: ({ params }) => fetch(`http://localhost:5000/reviews/${params.id}`),
   },
 ]);
 
