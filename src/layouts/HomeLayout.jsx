@@ -1,5 +1,6 @@
 import ReviewCard from "../components/ReviewCard";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const HomeLayout = () => {
   return (
@@ -12,7 +13,9 @@ const HomeLayout = () => {
           <ReviewCard></ReviewCard>
         </section>
       </main>
-      <footer></footer>
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 };

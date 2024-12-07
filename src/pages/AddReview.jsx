@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import Footer from "../components/Footer";
 
 const AddReview = () => {
   const { user } = useContext(AuthContext);
@@ -209,6 +210,9 @@ const AddReview = () => {
           </form>
         </div>
       </main>
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 };
