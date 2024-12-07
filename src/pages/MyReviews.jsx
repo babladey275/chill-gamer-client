@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Navbar from "../components/Navbar";
@@ -38,7 +38,7 @@ const MyReviews = () => {
             if (data.deleteCount > 0) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your coffee has been deleted.",
+                text: "Your review has been deleted.",
                 icon: "success",
               });
             }
@@ -75,9 +75,11 @@ const MyReviews = () => {
                     <td>{review.rating}</td>
                     <td>{review.genre}</td>
                     <td className="flex">
-                      <button className="btn btn-neutral mr-2">
-                        <FaEdit />
-                      </button>
+                      <Link to={`/all-reviews/${review._id}`}>
+                        <button className="btn btn-neutral mr-2">
+                          <FaEdit />
+                        </button>
+                      </Link>
                       <button
                         onClick={() => handleDelete(review._id)}
                         className="btn btn-error"
