@@ -52,7 +52,7 @@ const ReviewDetails = () => {
       <header>
         <Navbar></Navbar>
       </header>
-      <main className="flex justify-center">
+      <main className="flex justify-center mt-5">
         <div className="p-4 bg-base-100 border-2 rounded-3xl w-4/5 mx-auto flex gap-8">
           <div className="">
             <img

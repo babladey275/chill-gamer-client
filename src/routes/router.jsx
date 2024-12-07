@@ -6,12 +6,18 @@ import Register from "../pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import AddReview from "../pages/AddReview";
 import ReviewDetails from "../pages/ReviewDetails";
+import AllReviews from "../pages/AllReviews";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>,
     loader: () => fetch("http://localhost:5000/reviews"),
+  },
+  {
+    path: "all-reviews",
+    element: <AllReviews></AllReviews>,
+    loader: () => fetch("http://localhost:5000/all-reviews"),
   },
   {
     path: "auth",
