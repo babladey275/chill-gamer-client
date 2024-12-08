@@ -29,12 +29,11 @@ const MyReviews = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         setReviews(reviews.filter((review) => review._id !== id));
-        fetch(`http://localhost:5000/all-reviews/${id}`, {
+        fetch(`https://chill-gamer-server-pi.vercel.app/all-reviews/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.deleteCount > 0) {
               Swal.fire({
                 title: "Deleted!",

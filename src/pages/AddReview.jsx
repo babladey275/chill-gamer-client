@@ -28,10 +28,9 @@ const AddReview = () => {
       email,
       name,
     };
-    console.log(newReview);
 
     //send data to the server
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://chill-gamer-server-pi.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -40,7 +39,6 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",

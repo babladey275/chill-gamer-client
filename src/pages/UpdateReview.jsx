@@ -41,7 +41,7 @@ const UpdateReview = () => {
     };
 
     //send update data to the server
-    fetch(`http://localhost:5000/all-reviews/${_id}`, {
+    fetch(`https://chill-gamer-server-pi.vercel.app/all-reviews/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -50,7 +50,6 @@ const UpdateReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",

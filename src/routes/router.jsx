@@ -15,12 +15,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>,
-    loader: () => fetch("http://localhost:5000/reviews"),
+    loader: () => fetch("https://chill-gamer-server-pi.vercel.app/reviews"),
   },
   {
     path: "all-reviews",
     element: <AllReviews></AllReviews>,
-    loader: () => fetch("http://localhost:5000/all-reviews"),
+    loader: () => fetch("https://chill-gamer-server-pi.vercel.app/all-reviews"),
   },
   {
     path: "auth",
@@ -51,7 +51,8 @@ const router = createBrowserRouter([
         <ReviewDetails></ReviewDetails>
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/reviews/${params.id}`),
+    loader: ({ params }) =>
+      fetch(`https://chill-gamer-server-pi.vercel.app/reviews/${params.id}`),
   },
   {
     path: "my-reviews",
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
         <MyReviews></MyReviews>
       </PrivateRoute>
     ),
-    loader: () => fetch("http://localhost:5000/all-reviews"),
+    loader: () => fetch("https://chill-gamer-server-pi.vercel.app/all-reviews"),
   },
   {
     path: "watch-list",
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
         <GameWatchList></GameWatchList>
       </PrivateRoute>
     ),
-    loader: () => fetch("http://localhost:5000/watch-list"),
+    loader: () => fetch("https://chill-gamer-server-pi.vercel.app/watch-list"),
   },
   {
     path: "all-reviews/:id",
@@ -79,7 +80,9 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/all-reviews/${params.id}`),
+      fetch(
+        `https://chill-gamer-server-pi.vercel.app/all-reviews/${params.id}`
+      ),
   },
   {
     path: "*",

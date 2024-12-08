@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -64,7 +65,7 @@ const Navbar = () => {
             </ul>
           </div>
           <a className="flex items-center text-xl">
-            <p>logo </p>
+            <img className="w-14 h-14 ml-4 rounded-full" src={logo} alt="" />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">

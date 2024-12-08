@@ -25,7 +25,7 @@ const ReviewDetails = () => {
     };
 
     //send data to the server
-    fetch("http://localhost:5000/watch-list", {
+    fetch("https://chill-gamer-server-pi.vercel.app/watch-list", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -34,7 +34,6 @@ const ReviewDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
