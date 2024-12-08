@@ -2,6 +2,7 @@ import ReviewCard from "../components/ReviewCard";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BannerSlider from "../components/BannerSlider";
+import { Fade } from "react-awesome-reveal";
 
 const HomeLayout = () => {
   return (
@@ -14,9 +15,11 @@ const HomeLayout = () => {
           <BannerSlider></BannerSlider>
         </section>
         <section className="max-w-6xl mx-auto">
-          <h2 className="text-3xl text-center font-semibold mt-6">
-            Highest Rated Game
-          </h2>
+          <Fade duration={1500}>
+            <h2 className="text-3xl text-center font-semibold mt-6">
+              Highest Rated Game
+            </h2>
+          </Fade>
           <ReviewCard></ReviewCard>
         </section>
       </main>
