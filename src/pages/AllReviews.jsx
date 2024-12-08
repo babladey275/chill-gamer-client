@@ -6,6 +6,7 @@ import { useState } from "react";
 const AllReviews = () => {
   const reviews = useLoaderData();
   const [sortedReviews, setSortedReviews] = useState(reviews);
+  const [selectedGenre, setSelectedGenre] = useState("All");
 
   const handleSortByRating = () => {
     const sorted = [...reviews].sort((a, b) => b.rating - a.rating);
@@ -19,13 +20,25 @@ const AllReviews = () => {
     setSortedReviews(sorted);
   };
 
+  const handleGenreChange = (genre) => {
+    setSelectedGenre(genre);
+    if (genre === "All") {
+      setSortedReviews(reviews);
+    } else {
+      const filteredReviews = reviews.filter(
+        (review) => review.genre === genre
+      );
+      setSortedReviews(filteredReviews);
+    }
+  };
+
   return (
     <div>
       <header>
         <Navbar></Navbar>
       </header>
-      <main className="max-w-6xl mx-auto">
-        <div>
+      <main className="max-w-6xl min-h-[calc(100vh-320px)] mx-auto">
+        <div className="flex justify-between items-center">
           <div className="dropdown dropdown-bottom ml-5 mt-4">
             <div tabIndex={0} role="button" className="btn btn-warning m-1">
               Sort
@@ -39,6 +52,34 @@ const AllReviews = () => {
               </li>
               <li>
                 <a onClick={handleSortByYear}>Sort by Year</a>
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown dropdown-end mr-5 mt-4">
+            <div tabIndex={0} role="button" className="btn btn-warning m-1">
+              Genres
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+            >
+              <li>
+                <a onClick={() => handleGenreChange("All")}>All</a>
+              </li>
+              <li>
+                <a onClick={() => handleGenreChange("Action")}>Action</a>
+              </li>
+              <li>
+                <a onClick={() => handleGenreChange("RPG")}>RPG</a>
+              </li>
+              <li>
+                <a onClick={() => handleGenreChange("Adventure")}>Adventure</a>
+              </li>
+              <li>
+                <a onClick={() => handleGenreChange("Shooter")}>Shooter</a>
+              </li>
+              <li>
+                <a onClick={() => handleGenreChange("Strategy")}>Strategy</a>
               </li>
             </ul>
           </div>
