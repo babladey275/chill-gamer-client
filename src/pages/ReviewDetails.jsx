@@ -51,16 +51,16 @@ const ReviewDetails = () => {
         <Navbar></Navbar>
       </header>
       <main className="flex justify-center mt-5">
-        <div className="p-4 bg-base-100 border-2 rounded-3xl w-4/5 mx-auto flex gap-8">
-          <div className="">
+        <div className="p-4 bg-base-100 border-2 rounded-3xl w-4/5 mx-auto flex flex-col md:flex-row gap-8">
+          <div className="flex-1">
             <img
-              className="rounded-xl w-[410px] h-full"
+              className="rounded-xl w-full h-full"
               src={review.image}
               alt=""
             />
           </div>
-          <div className="space-y-4">
-            <h3 className="text-3xl font-semibold">{title}</h3>
+          <div className="space-y-4 flex-1">
+            <h3 className="text-xl md:text-3xl font-semibold">{title}</h3>
             <p className="text-gray-500">{description}</p>
             <p className="font-bold">Rating: {rating}</p>
             <p className="font-semibold">Genre: {genre}</p>

@@ -1,8 +1,13 @@
-# React + Vite
+# Chill Gamer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React-based web application focused on managing and sharing game reviews. Users can register, log in, and post their reviews on different games. The platform allows users to view detailed reviews, update their own reviews, and add games to a personal watchList. Additionally, the app integrates with Google authentication for easy sign-ins and features a user-friendly interface to enhance the overall user experience.
 
-Currently, two official plugins are available:
+## Key Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **User Authentication**: Users can sign up and log in using either email/password or Google authentication.
+2. **Review Management**: Users can create, update, and view detailed reviews of games including descriptions, ratings, and more.
+3. **WatchList Functionality**: Logged-in users can add games to their personal watchList for future reference.
+4. **Dynamic Game Information**: Each review contains detailed game information such as title, description, genre, and user reviews.
+5. **Responsive Design**: The app is fully responsive, providing a seamless experience across devices including desktops, tablet and mobile phones.
+
+**live link**: https://chill-gamer-c186d.web.app/
